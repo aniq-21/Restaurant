@@ -78,8 +78,8 @@ nav {
 /* ─── HERO ─── */
 .hero {
   height: 100vh; min-height: 700px;
-  display: flex; align-items: flex-end;
-  padding: 0 64px 80px;
+  display: flex; align-items: center;
+  padding: 0 64px;
   position: relative; overflow: hidden;
 }
 
@@ -113,7 +113,12 @@ nav {
   color: var(--muted); transform-origin: center;
 }
 
-.hero-content { position: relative; z-index: 2; max-width: 760px; }
+.hero-content { 
+  position: relative; 
+  z-index: 2; 
+  max-width: 760px;
+  padding-top: 140px; /* Lowers the text section down */
+}
 
 .hero-eyebrow {
   display: flex; align-items: center; gap: 20px;
@@ -184,11 +189,16 @@ nav {
 
 .hero-wheel {
   position: absolute;
-  right: 64px; top: 50%; transform: translateY(-50%);
+  right: 64px; /* Aligned to right with margin */
+  top: 50%; 
+  transform: translateY(-50%);
   width: 520px; height: 520px;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.hero-wheel svg { width: 100%; height: 100%; }
+.hero-wheel svg { width: 100%; height: 100%; overflow: visible; }
 @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes spin-reverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 @keyframes spin-med { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -399,7 +409,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
 /* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .hero-content { animation: fadeUp 1s ease both; }
-.hero-stats-bar { animation: fadeUp 1s 0.3s ease both; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -407,8 +416,8 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   .nav-center { display: none; }
   .hero { padding: 0 24px 64px; }
   .hero-num { display: none; }
-  .hero-stats-bar { display: none; }
   .hero h1 { font-size: 52px; }
+  .hero-wheel { display: none; }
   section { padding: 80px 24px; }
   .menu-intro, .menu-grid, .philosophy, .hours-layout, .res-layout { grid-template-columns: 1fr; gap: 40px; }
   .hours-grid { grid-template-columns: 1fr; }
@@ -422,7 +431,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">Zaffron</div>
   <div class="nav-center">
@@ -437,7 +445,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-num">Z</div>
@@ -479,13 +486,10 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
         </filter>
       </defs>
 
-      <!-- Outer glow halo -->
       <circle cx="260" cy="260" r="240" stroke="rgba(201,168,76,0.04)" stroke-width="80"/>
 
-      <!-- Outermost ring -->
       <g class="ring-outer">
         <circle cx="260" cy="260" r="230" stroke="rgba(201,168,76,0.12)" stroke-width="0.5"/>
-        <!-- Tick marks -->
         <g stroke="rgba(201,168,76,0.3)" stroke-width="1">
           <line x1="260" y1="32" x2="260" y2="50" transform="rotate(0 260 260)"/>
           <line x1="260" y1="32" x2="260" y2="44" transform="rotate(30 260 260)"/>
@@ -500,26 +504,21 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
           <line x1="260" y1="32" x2="260" y2="44" transform="rotate(300 260 260)"/>
           <line x1="260" y1="32" x2="260" y2="44" transform="rotate(330 260 260)"/>
         </g>
-        <!-- Diamond markers at cardinals -->
         <polygon points="260,22 265,32 260,42 255,32" fill="rgba(201,168,76,0.6)" transform="rotate(0 260 260)"/>
         <polygon points="260,22 265,32 260,42 255,32" fill="rgba(201,168,76,0.3)" transform="rotate(90 260 260)"/>
         <polygon points="260,22 265,32 260,42 255,32" fill="rgba(201,168,76,0.3)" transform="rotate(180 260 260)"/>
         <polygon points="260,22 265,32 260,42 255,32" fill="rgba(201,168,76,0.3)" transform="rotate(270 260 260)"/>
-        <!-- Rotating text -->
         <text font-family="Montserrat,sans-serif" font-size="9" fill="rgba(201,168,76,0.45)" letter-spacing="6" font-weight="500" text-rendering="geometricPrecision">
           <textPath href="#outerTextPath">FINE DINING · EST 2018 · KOCHI KERALA · AUTHENTIC FLAVOURS · SINCE 2018 · </textPath>
         </text>
       </g>
 
-      <!-- Mid ring -->
       <g class="ring-mid">
         <circle cx="260" cy="260" r="170" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
         <circle cx="260" cy="260" r="165" stroke="rgba(201,168,76,0.06)" stroke-width="0.5"/>
-        <!-- Dish names on path -->
         <text font-family="Cormorant,serif" font-size="11" fill="rgba(201,168,76,0.5)" letter-spacing="4" font-style="italic" text-rendering="geometricPrecision">
           <textPath href="#midTextPath">Prawn Masala · Biryani · Fish Moilee · Dal Makhani · Payasam · </textPath>
         </text>
-        <!-- Dots on ring -->
         <circle cx="260" cy="92" r="3" fill="rgba(201,168,76,0.5)" transform="rotate(0 260 260)"/>
         <circle cx="260" cy="92" r="2" fill="rgba(201,168,76,0.3)" transform="rotate(72 260 260)"/>
         <circle cx="260" cy="92" r="2" fill="rgba(201,168,76,0.3)" transform="rotate(144 260 260)"/>
@@ -527,17 +526,14 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
         <circle cx="260" cy="92" r="2" fill="rgba(201,168,76,0.3)" transform="rotate(288 260 260)"/>
       </g>
 
-      <!-- Inner ring -->
       <g class="ring-inner">
         <circle cx="260" cy="260" r="110" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-        <!-- Spokes -->
         <g stroke="rgba(201,168,76,0.1)" stroke-width="0.5">
           <line x1="260" y1="152" x2="260" y2="368" transform="rotate(0 260 260)"/>
           <line x1="260" y1="152" x2="260" y2="368" transform="rotate(45 260 260)"/>
           <line x1="260" y1="152" x2="260" y2="368" transform="rotate(90 260 260)"/>
           <line x1="260" y1="152" x2="260" y2="368" transform="rotate(135 260 260)"/>
         </g>
-        <!-- Corner ornaments -->
         <g fill="rgba(201,168,76,0.25)">
           <polygon points="260,152 263,162 260,172 257,162" transform="rotate(0 260 260)"/>
           <polygon points="260,152 263,162 260,172 257,162" transform="rotate(90 260 260)"/>
@@ -546,33 +542,27 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
         </g>
       </g>
 
-      <!-- Static center -->
       <circle cx="260" cy="260" r="88" fill="rgba(8,7,5,0.95)" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
       <circle cx="260" cy="260" r="76" fill="none" stroke="rgba(201,168,76,0.1)" stroke-width="0.5"/>
 
-      <!-- Center content - static -->
       <g class="center-pulse" filter="url(#softglow)">
         <circle cx="260" cy="260" r="88" fill="rgba(201,168,76,0.03)"/>
       </g>
 
-      <!-- Z monogram -->
       <text x="260" y="252" font-family="Cormorant,serif" font-size="52" font-weight="600"
         fill="none" stroke="rgba(201,168,76,0.7)" stroke-width="0.8"
         text-anchor="middle" dominant-baseline="middle"
         filter="url(#glow)" letter-spacing="-2">Z</text>
 
-      <!-- Subtitle under Z -->
       <text x="260" y="284" font-family="Montserrat,sans-serif" font-size="7.5"
         fill="rgba(201,168,76,0.5)" text-anchor="middle"
         letter-spacing="4" font-weight="500">ZAFFRON</text>
 
-      <!-- Four corner dots -->
       <circle cx="260" cy="175" r="2.5" fill="rgba(201,168,76,0.6)" filter="url(#glow)"/>
       <circle cx="345" cy="260" r="2.5" fill="rgba(201,168,76,0.4)"/>
       <circle cx="260" cy="345" r="2.5" fill="rgba(201,168,76,0.4)"/>
       <circle cx="175" cy="260" r="2.5" fill="rgba(201,168,76,0.4)"/>
 
-      <!-- Outer fade -->
       <circle cx="260" cy="260" r="255" fill="url(#fadeEdge)" opacity="0.8"/>
       <defs>
         <radialGradient id="fadeEdge" cx="50%" cy="50%" r="50%">
@@ -586,7 +576,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   <div class="hero-bar"></div>
 </div>
 
-<!-- MENU -->
 <section id="menu">
   <div class="sec-label">Culinary Journey</div>
   <div class="menu-intro">
@@ -638,7 +627,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
 <div class="philosophy" id="philosophy">
   <div class="phil-visual">
     <div class="phil-big-text">Soul<br>Food</div>
@@ -656,7 +644,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   </div>
 </div>
 
-<!-- HOURS -->
 <section id="hours">
   <div class="hours-layout">
     <div>
@@ -684,7 +671,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   </div>
 </section>
 
-<!-- RESERVATION -->
 <section id="reservation">
   <div class="res-layout">
     <div class="res-info">
@@ -730,7 +716,6 @@ footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Zaffron</div>
   <p>© 2026 Zaffron Fine Dining · Kochi, Kerala</p>
